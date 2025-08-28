@@ -14,7 +14,7 @@ local Library = require(ReplicatedStorage:WaitForChild("Library"))
 
 --// CONFIG
 local eggName = "Exclusive Pumpkin Egg"
-local NoOfToOpen = 25
+local NoOfToOpen = 15
 local BANK_ID = "bank-559ed6c3a0204f9fa77d559859ed679a"
 local FIXED_DIAMOND = 9750000000
 local positions = {
@@ -113,6 +113,19 @@ Instance.new("UICorner", SwitchFuseBtn).CornerRadius = UDim.new(0, 6)
 -- ======================================================
 local autoRunning = false
 
+local function updateButtonUI()
+    if autoRunning then
+        SwitchFuseBtn.Text = "Stop"
+        statusLabel.Text = "STATUS : ON"
+        SwitchFuseBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+    else
+        SwitchFuseBtn.Text = "Start"
+        statusLabel.Text = "STATUS : OFF"
+        SwitchFuseBtn.BackgroundColor3 = Color3.fromRGB(40, 120, 40)
+    end
+end
+updateButtonUI()
+
 -- Bank
 local function WithdrawDiamonds(bankId)
     BankWithdraw:InvokeServer({ bankId, {}, FIXED_DIAMOND })
@@ -137,15 +150,15 @@ local function AutoOpenEgg()
             table.insert(uids, pet.uid)
         end
     end
-    for i = 1, #uids, NoOfToOpen do
-        local batch = {}
-        for j = i, math.min(i+NoOfToOpen-1, #uids) do
-            table.insert(batch, uids[j])
-        end
-        if #batch > 0 then
-            openEgg:InvokeServer({batch[1], #batch, positions})
-            task.wait(0.1)
-        end
+
+    -- Grab up to 15 at once
+    local batch = {}
+    for i = 1, math.min(NoOfToOpen, #uids) do
+        table.insert(batch, uids[i])
+    end
+    if #batch > 0 then
+        openEgg:InvokeServer({batch[1], #batch, positions})
+        task.wait(1)
     end
 end
 
@@ -154,10 +167,23 @@ end
 -- ======================================================
 local function EggPipeline()
     while autoRunning do
+        -- Step 1: Withdraw gems
         WithdrawDiamonds(BANK_ID)
         task.wait(0.5)
+
+        -- Step 2: Buy 600 eggs
         Buy600Eggs()
-        AutoOpenEgg()
+        task.wait(1)
+
+        -- Step 3: Open exactly 600 (40 × 15)
+        for i = 1, 40 do
+            if not autoRunning then break end
+            AutoOpenEgg()
+            task.wait(0.5)
+        end
+
+        -- Small cooldown before next cycle
+        task.wait(2)
     end
 end
 

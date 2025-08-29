@@ -151,7 +151,7 @@ local function AutoOpenEgg()
         end
     end
 
-    -- Grab up to 15 at once
+    -- Grab up to 25 at once
     local batch = {}
     for i = 1, math.min(NoOfToOpen, #uids) do
         table.insert(batch, uids[i])
@@ -175,8 +175,8 @@ local function EggPipeline()
         Buy600Eggs()
         task.wait(0.3)
 
-        -- Step 3: Open exactly 600 (40 × 15)
-        for i = 1, 40 do
+        -- Step 3: Open exactly 600 (24 × 25)
+        for i = 1, 24 do
             if not autoRunning then break end
             AutoOpenEgg()
             task.wait(0.3)

@@ -13,7 +13,7 @@ local BankWithdraw = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"
 local Library = require(ReplicatedStorage:WaitForChild("Library"))
 
 --// CONFIG
-local eggName = "Exclusive Pumpkin Egg"
+local eggName = "Exclusive Pixel Egg"
 local NoOfToOpen = 25
 local BANK_ID = "bank-fb2ed956005b49ab8799f4187fc7515c"
 local FIXED_DIAMOND = 9750000000

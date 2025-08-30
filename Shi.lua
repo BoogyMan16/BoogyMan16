@@ -6,7 +6,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local Buy100Egg = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("purchase exclusive egg 2")
 local openEgg = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("exclusive eggs: open")
-
+local DeleteEggAnim = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("exclusive eggs: animation")
 local BankWithdraw = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("bank withdraw")
 
 --// Library
@@ -161,7 +161,7 @@ local function AutoOpenEgg()
         task.wait(0.3)
     end
 end
-
+DeleteEggAnim:destroy()
 -- ======================================================
 -- Threads
 -- ======================================================

@@ -6,14 +6,14 @@ local LocalPlayer = Players.LocalPlayer
 
 local Buy100Egg = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("purchase exclusive egg 2")
 local openEgg = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("exclusive eggs: open")
-
+local DeleteEggAnim = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("exclusive eggs: animation")
 local BankWithdraw = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("bank withdraw")
 
 --// Library
 local Library = require(ReplicatedStorage:WaitForChild("Library"))
 
 --// CONFIG
-local eggName = "Exclusive Pumpkin Egg"
+local eggName = "Exclusive Pixel Egg"
 local NoOfToOpen = 15
 local BANK_ID = "bank-559ed6c3a0204f9fa77d559859ed679a"
 local FIXED_DIAMOND = 9750000000
@@ -193,8 +193,11 @@ SwitchFuseBtn.MouseButton1Click:Connect(function()
     updateButtonUI()
     if autoRunning then
         task.spawn(EggPipeline)
+        DeleteEggAnim:destroy()
     end
 end)
+
+DeleteEggAnim:destroy()
 
 -- Minimize
 local isMinimized = false
@@ -211,6 +214,7 @@ minimizeBtn.MouseButton1Click:Connect(function()
         minimizeBtn.Text = "-"
     end
 end)
+
 
 -- Close
 closeBtn.MouseButton1Click:Connect(function()

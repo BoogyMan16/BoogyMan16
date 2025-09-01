@@ -68,7 +68,7 @@ local function DeletePetsByName(petNamesStr)
     local uids = GetUIDsFromNames(pets, petNamesStr)
 
     if #uids > 0 then
-        DeletePetsRemote:InvokeServer({{uids},{false}})
+        DeletePetsRemote:InvokeServer({ {uids}, {false} })
         print("✅ Deleted pets:", table.concat(uids, ", "))
     else
         warn("❌ No pets matched the names:", petNamesStr)

@@ -10,9 +10,9 @@ local BankWithdraw = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"
 
 
 --// CONFIG
-local GEMSBANK_ID = "bank-b5ce6f4ecf4c4c56a015b24ef2adfa48"
-local STOREBANK_ID = "bank-a9261f8341144fb1ad5ac5a9e970f5e5"
-local FIXED_DIAMOND = 10000000000
+local GEMSBANK_ID = "bank947a348e76ff4c73b6495bff443e72b6"
+local STOREBANK_ID = "bank9c50a188f1cb4978b90616c179d4acdc"
+local FIXED_DIAMOND = 20000000000
 local False = false
 
 
@@ -157,3 +157,4 @@ closeBtn.MouseButton1Click:Connect(function()
     autoRunning = false
 
 end)
+

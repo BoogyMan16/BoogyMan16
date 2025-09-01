@@ -5,7 +5,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local LocalPlayer = Players.LocalPlayer
 
  --// Remotes 
-local ChristmasEgg= Workspace:WaitForChild("THINGS"):WaitForChild("REMOTES"):WaitForChild("insanechristmasegg")  
+local ChristmasEgg= Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("insanechristmasegg")  
 
 -- ======================================================
 -- GUI SETUP

@@ -13,6 +13,7 @@ local BankWithdraw = Workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"
 local GEMSBANK_ID = "bank-b5ce6f4ecf4c4c56a015b24ef2adfa48"
 local STOREBANK_ID = "bank-a9261f8341144fb1ad5ac5a9e970f5e5"
 local FIXED_DIAMOND = 10000000000
+local False = false
 
 
 -- ======================================================
@@ -123,11 +124,11 @@ SwitchFuseBtn.MouseButton1Click:Connect(function()
         task.spawn(function()
             while autoRunning do
                 -- Withdraw
-                BankWithdraw:InvokeServer({ GEMSBANK_ID, {}, FIXED_DIAMOND })
+                BankWithdraw:InvokeServer({ { GEMSBANK_ID, {}, FIXED_DIAMOND },{False,False,False} })
                 task.wait(0.05)
 
                 -- Deposit
-                BankDeposit:InvokeServer({ STOREBANK_ID, {}, FIXED_DIAMOND })
+                BankDeposit:InvokeServer({ { STOREBANK_ID, {}, FIXED_DIAMOND },{False,False,False} })
                 task.wait(0.05)
             end
         end)
@@ -154,4 +155,5 @@ end)
 closeBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
     autoRunning = false
+
 end)

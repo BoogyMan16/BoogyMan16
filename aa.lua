@@ -25,7 +25,7 @@ local function HasDesiredEnchant(pet)
 
     for _, power in ipairs(pet.powers) do
         local powerType, level = power[1], power[2]
-        if powerType == DesireEnchantType and (level == 4 or level == 5) then
+        if powerType == DesireEnchantType and level == 5 then
             return true
         end
     end
